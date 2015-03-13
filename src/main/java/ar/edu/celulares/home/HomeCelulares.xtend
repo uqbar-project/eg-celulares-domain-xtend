@@ -89,7 +89,7 @@ class HomeCelulares extends CollectionBasedHome<Celular> {
 	}
 
 	/**
-	 * No usamos el search by example
+	 * No usamos el search by example 
 	 */
 	override def Predicate<Celular> getCriterio(Celular example) {
 		null
