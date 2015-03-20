@@ -3,10 +3,10 @@ package ar.edu.celulares.domain
 import java.math.BigDecimal
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
-import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.utils.TransactionalAndObservable
 
 @Accessors
-@Observable
+@TransactionalAndObservable
 class Modelo extends Entity {
 	String descripcion
 	BigDecimal costo

@@ -4,15 +4,14 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.model.UserException
-import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.utils.TransactionalAndObservable
 
 @Accessors
-@Observable
+@TransactionalAndObservable
 class Celular extends Entity implements Cloneable {
 
 	final int MAX_NUMERO = 100000
 
-	Integer id
 	Integer numero
 	String nombre
 	Modelo modeloCelular
@@ -41,7 +40,7 @@ class Celular extends Entity implements Cloneable {
 	// ** Validacion
 	// ********************************************************
 	/**
-	 * Valida que el celular esté correctamente cargado
+	 * Valida que el celular esté correctamente cargado (cumple todas las validaciones que plantea el negocio)
 	 */
 	def validar() {
 		if (numero == null) {
@@ -63,14 +62,18 @@ class Celular extends Entity implements Cloneable {
 	}
 
 	// ********************************************************
-	// ** Getters y setters
+	// ** Propiedades adicionales
 	// ********************************************************
+	/**
+	 * Determina cuándo es correcto que se pueda determinar 
+	 * si el cliente recibe el resumen de cuenta en su domicilio
+	 */
 	def isHabilitaResumenCuenta() {
 		 !modeloCelular.requiereResumenCuenta
 	}
 	
 	// ********************************************************
-	// ** Misceláneos
+	// ** Cómo se muestra el cliente de un celular
 	// ********************************************************
 	override def String toString() {
 		var result = new StringBuffer
@@ -85,10 +88,19 @@ class Celular extends Entity implements Cloneable {
 		result.toString
 	}
 
+
+	// ******************************************************************
+	// ** Métodos que no son estrictamente necesarios
+	//    Sirven si queremos implementar la transaccionalidad a mano
+	// ******************************************************************
 	override clone() {
 		super.clone()
 	}
 	
+	/**
+	 * Se copia toda la información al destino
+	 * @params El celular que contendrá la información copiada
+	 */
 	def copiarA(Celular destino) {
 		destino.numero = this.numero
 		destino.nombre = this.nombre

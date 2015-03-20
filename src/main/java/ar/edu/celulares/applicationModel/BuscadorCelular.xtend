@@ -40,10 +40,9 @@ class BuscadorCelular implements Serializable {
 	def void search() { 
 		// WORKAROUND para que refresque la grilla en las actualizaciones
 		resultados = new ArrayList<Celular>
-
 		// FIN WORKAROUND
+		
 		resultados = homeCelulares.search(numero, nombre)
-		// también se puede llamar homeCelulares.search(numero, nombre) 
 	}
 
 	def void clear() {

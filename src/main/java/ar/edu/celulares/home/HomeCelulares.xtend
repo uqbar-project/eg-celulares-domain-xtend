@@ -16,6 +16,9 @@ class HomeCelulares extends CollectionBasedHome<Celular> {
 		this.init
 	}
 
+	/**
+	 * Inicialización del juego de datos del repositorio
+	 */
 	def void init() {
 		this.create("Laura Iturbe", 88022202, getModelo("NOKIA LUMIA 625"), false)
 		this.create("Julieta Passerini", 45636453, getModelo("NOKIA ASHA 501"), false)
@@ -24,6 +27,9 @@ class HomeCelulares extends CollectionBasedHome<Celular> {
 		this.create("Melina Dodino", 40989911, getModelo("LG OPTIMUS L3 II"), true)
 	}
 
+	/**
+	 * Permite encontrar el modelo de un celular en base a su descripción
+	 */
 	def getModelo(String modeloDescripcion) {
 		(ApplicationContext.instance.getSingleton(typeof(Modelo)) as HomeModelos).get(modeloDescripcion)
 	}
@@ -45,6 +51,9 @@ class HomeCelulares extends CollectionBasedHome<Celular> {
 		validarClientesDuplicados(celular)
 	}
 
+	/**
+	 * Valida que no haya dos clientes con el mismo número de celular
+	 */
 	def void validarClientesDuplicados(Celular celular) {
 		val numero = celular.numero
 		if (!this.search(numero).isEmpty) {
@@ -89,7 +98,7 @@ class HomeCelulares extends CollectionBasedHome<Celular> {
 	}
 
 	/**
-	 * No usamos el search by example 
+	 * Esta definición no tiene utilidad dado que no usamos el search by example 
 	 */
 	override def Predicate<Celular> getCriterio(Celular example) {
 		null

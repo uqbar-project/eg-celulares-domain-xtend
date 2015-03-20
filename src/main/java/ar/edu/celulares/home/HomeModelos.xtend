@@ -14,6 +14,9 @@ class HomeModelos extends CollectionBasedHome<Modelo> {
 		this.init
 	}
 
+	/**
+	 * Inicialización del juego de datos del repositorio
+	 */
 	def void init() {
 		this.create("NOKIA ASHA 501", 700f, true)
 		this.create("LG OPTIMUS L5 II", 920f, false)
@@ -22,6 +25,9 @@ class HomeModelos extends CollectionBasedHome<Modelo> {
 		this.create("MOTOROLA RAZR V3", 350f, false)
 	}
 	
+	// ********************************************************
+	// ** Altas y bajas
+	// ********************************************************
 	def void create(String descripcion, float costo, boolean requiereResumenCuenta) {
 		var modelo = new Modelo
 		modelo.descripcion = descripcion
@@ -46,6 +52,9 @@ class HomeModelos extends CollectionBasedHome<Modelo> {
 		new Modelo()
 	}
 
+	/**
+	 * Esta definición no tiene utilidad dado que no usamos el search by example 
+	 */
 	override def Predicate<Modelo> getCriterio(Modelo example) {
 		null
 	}
