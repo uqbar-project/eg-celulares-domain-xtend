@@ -2,8 +2,8 @@ package ar.edu.celulares.domain
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
-import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.model.UserException
+import org.uqbar.commons.utils.Dependencies
 import org.uqbar.commons.utils.TransactionalAndObservable
 
 @Accessors
@@ -16,7 +16,7 @@ class Celular extends Entity implements Cloneable {
 	String nombre
 	Modelo modeloCelular
 	Boolean recibeResumenCuenta = false
-	
+
 	// ********************************************************
 	// ** Getters y setters
 	// Los getters y setters por default no se deben codificar
@@ -24,16 +24,10 @@ class Celular extends Entity implements Cloneable {
 	// en nuestro ejemplo tenemos que modificar la propiedad
 	// recibeResumenCuenta en base al modelo de celular seleccionado
 	// ********************************************************
-
 	def void setModeloCelular(Modelo unModeloCelular) {
-		// @DEPRECATED para no entrar en loop infinito, en el setter debemos
-		// utilizar _ para indicar que nos referimos a la variable
-		// que genera xtend para compilar en Java
-		// @DEPRECATED Ya no es mas necesario
 		modeloCelular = unModeloCelular
-		// fin comentario
 		recibeResumenCuenta = unModeloCelular.requiereResumenCuenta
-		ObservableUtils.firePropertyChanged(this, "habilitaResumenCuenta", isHabilitaResumenCuenta())
+//		ObservableUtils.firePropertyChanged(this, "habilitaResumenCuenta", isHabilitaResumenCuenta())
 	}
 
 	// ********************************************************
@@ -58,7 +52,7 @@ class Celular extends Entity implements Cloneable {
 	}
 
 	def ingresoNombre() {
-		 nombre != null && !nombre.trim().equals("")
+		nombre != null && !nombre.trim().equals("")
 	}
 
 	// ********************************************************
@@ -67,11 +61,13 @@ class Celular extends Entity implements Cloneable {
 	/**
 	 * Determina cuándo es correcto que se pueda determinar 
 	 * si el cliente recibe el resumen de cuenta en su domicilio
+	 * @return un booleano
 	 */
-	def isHabilitaResumenCuenta() {
-		 !modeloCelular.requiereResumenCuenta
+	@Dependencies("modeloCelular")
+	def getHabilitaResumenCuenta() {
+		!modeloCelular.requiereResumenCuenta
 	}
-	
+
 	// ********************************************************
 	// ** Cómo se muestra el cliente de un celular
 	// ********************************************************
@@ -84,10 +80,9 @@ class Celular extends Entity implements Cloneable {
 		if (numero != null) {
 			result.append(" - " + numero)
 		}
-		result.append(if (recibeResumenCuenta) " - recibe resumen" else " - no recibe resumen")
+		result.append(if(recibeResumenCuenta) " - recibe resumen" else " - no recibe resumen")
 		result.toString
 	}
-
 
 	// ******************************************************************
 	// ** Métodos que no son estrictamente necesarios
@@ -96,10 +91,10 @@ class Celular extends Entity implements Cloneable {
 	override clone() {
 		super.clone()
 	}
-	
+
 	/**
 	 * Se copia toda la información al destino
-	 * @params El celular que contendrá la información copiada
+	 * parametros: El celular que contendrá la información copiada
 	 */
 	def copiarA(Celular destino) {
 		destino.numero = this.numero
@@ -107,5 +102,5 @@ class Celular extends Entity implements Cloneable {
 		destino.recibeResumenCuenta = this.recibeResumenCuenta
 		destino.modeloCelular = this.modeloCelular
 	}
-	
+
 }
