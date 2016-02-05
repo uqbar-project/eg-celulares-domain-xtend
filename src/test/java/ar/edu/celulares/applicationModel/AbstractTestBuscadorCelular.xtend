@@ -1,7 +1,7 @@
 package ar.edu.celulares.applicationModel
 
 import ar.edu.celulares.domain.Modelo
-import ar.edu.celulares.home.HomeModelos
+import ar.edu.celulares.repo.RepoModelos
 import org.junit.Before
 import org.uqbar.commons.utils.ApplicationContext
 
@@ -12,8 +12,8 @@ class AbstractTestBuscadorCelular {
 	@Before
 	def void init() {
 		searcher = new BuscadorCelular
-		searcher.nombre = "Dodi"
-		ApplicationContext.instance.configureSingleton(typeof(Modelo), new HomeModelos)
+		searcher.example.nombre = "Dodi"
+		ApplicationContext.instance.configureSingleton(typeof(Modelo), new RepoModelos)
 	}
 
 }

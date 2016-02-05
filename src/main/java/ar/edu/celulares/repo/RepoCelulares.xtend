@@ -1,38 +1,14 @@
-package ar.edu.celulares.home
+package ar.edu.celulares.repo
 
 import ar.edu.celulares.domain.Celular
-
 import ar.edu.celulares.domain.Modelo
-import org.uqbar.commons.model.CollectionBasedHome
+import org.apache.commons.collections15.Predicate
+import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.UserException
-import org.uqbar.commons.utils.ApplicationContext
 import org.uqbar.commons.utils.Observable
-import org.apache.commons.collections15.Predicate;
 
 @Observable
-class HomeCelulares extends CollectionBasedHome<Celular> {
-
-	new() {
-		this.init
-	}
-
-	/**
-	 * Inicialización del juego de datos del repositorio
-	 */
-	def void init() {
-		this.create("Laura Iturbe", 88022202, getModelo("NOKIA LUMIA 625"), false)
-		this.create("Julieta Passerini", 45636453, getModelo("NOKIA ASHA 501"), false)
-		this.create("Debora Fortini", 45610892, getModelo("NOKIA ASHA 501"), true)
-		this.create("Chiara Dodino", 68026976, getModelo("NOKIA ASHA 501"), false)
-		this.create("Melina Dodino", 40989911, getModelo("LG OPTIMUS L3 II"), true)
-	}
-
-	/**
-	 * Permite encontrar el modelo de un celular en base a su descripción
-	 */
-	def getModelo(String modeloDescripcion) {
-		(ApplicationContext.instance.getSingleton(typeof(Modelo)) as HomeModelos).get(modeloDescripcion)
-	}
+class RepoCelulares extends CollectionBasedRepo<Celular> {
 
 	// ********************************************************
 	// ** Altas y bajas

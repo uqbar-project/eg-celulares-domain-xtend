@@ -1,39 +1,27 @@
-package ar.edu.celulares.home
+package ar.edu.celulares.repo
 
 import ar.edu.celulares.domain.Modelo
 import java.math.BigDecimal
 import java.util.List
-import org.uqbar.commons.model.CollectionBasedHome
+import org.apache.commons.collections15.Predicate
+import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.utils.Observable
-import org.apache.commons.collections15.Predicate;
 
 @Observable
-class HomeModelos extends CollectionBasedHome<Modelo> {
+class RepoModelos extends CollectionBasedRepo<Modelo> {
 
-	new() {
-		this.init
-	}
-
-	/**
-	 * Inicialización del juego de datos del repositorio
-	 */
-	def void init() {
-		this.create("NOKIA ASHA 501", 700f, true)
-		this.create("LG OPTIMUS L5 II", 920f, false)
-		this.create("LG OPTIMUS L3 II", 450f, true)
-		this.create("NOKIA LUMIA 625", 350f, true)
-		this.create("MOTOROLA RAZR V3", 350f, false)
-	}
-	
 	// ********************************************************
 	// ** Altas y bajas
 	// ********************************************************
-	def void create(String descripcion, float costo, boolean requiereResumenCuenta) {
-		var modelo = new Modelo
-		modelo.descripcion = descripcion
-		modelo.costo = new BigDecimal(costo)
-		modelo.requiereResumenCuenta = requiereResumenCuenta
+	def Modelo create(String unaDescripcion, float unCosto, boolean siRequiereResumenCuenta) {
+		// guardamos la variable para devolverla al final
+		val modelo = new Modelo => [
+			descripcion = unaDescripcion
+			costo = new BigDecimal(unCosto)
+			requiereResumenCuenta = siRequiereResumenCuenta
+		]
 		this.create(modelo)
+		modelo
 	}
 
 	def List<Modelo> getModelos() {

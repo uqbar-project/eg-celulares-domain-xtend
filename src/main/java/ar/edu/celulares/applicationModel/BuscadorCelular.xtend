@@ -1,9 +1,8 @@
 package ar.edu.celulares.applicationModel
 
 import ar.edu.celulares.domain.Celular
-import ar.edu.celulares.home.HomeCelulares
+import ar.edu.celulares.repo.RepoCelulares
 import java.io.Serializable
-import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.ApplicationContext
@@ -29,8 +28,7 @@ import org.uqbar.commons.utils.Observable
 @Observable
 class BuscadorCelular implements Serializable {
 
-	Integer numero
-	String nombre
+	Celular example = new Celular
 	List<Celular> resultados
 	Celular celularSeleccionado
 
@@ -38,25 +36,22 @@ class BuscadorCelular implements Serializable {
 	// ** Acciones
 	// ********************************************************
 	def void search() { 
-		// WORKAROUND para que refresque la grilla en las actualizaciones
-		resultados = new ArrayList<Celular>
-		// FIN WORKAROUND
-		
-		resultados = homeCelulares.search(numero, nombre)
+		resultados = repoCelulares.search(example.numero, example.nombre)
 	}
 
 	def void clear() {
-		nombre = null
-		numero = null
+		example = new Celular
+		resultados = newArrayList
+		celularSeleccionado = null
 	}
 
 	def void eliminarCelularSeleccionado() {
-		getHomeCelulares().delete(celularSeleccionado)
+		getRepoCelulares().delete(celularSeleccionado)
 		this.search()
 		celularSeleccionado = null
 	}
 
-	def HomeCelulares getHomeCelulares() {
+	def RepoCelulares getRepoCelulares() {
 		ApplicationContext.instance.getSingleton(typeof(Celular))
 	}
 

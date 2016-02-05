@@ -17,6 +17,13 @@ class Celular extends Entity implements Cloneable {
 	Modelo modeloCelular
 	Boolean recibeResumenCuenta = false
 
+	def void setNumero(Integer unNumero) {
+		if (unNumero != null && unNumero.intValue() <= this.MAX_NUMERO) {
+			throw new UserException("El número debe ser mayor a " + this.MAX_NUMERO)
+		}
+		this.numero = unNumero
+	}
+
 	// ********************************************************
 	// ** Getters y setters
 	// Los getters y setters por default no se deben codificar
@@ -27,7 +34,6 @@ class Celular extends Entity implements Cloneable {
 	def void setModeloCelular(Modelo unModeloCelular) {
 		modeloCelular = unModeloCelular
 		recibeResumenCuenta = unModeloCelular.requiereResumenCuenta
-//		ObservableUtils.firePropertyChanged(this, "habilitaResumenCuenta", isHabilitaResumenCuenta())
 	}
 
 	// ********************************************************
@@ -82,25 +88,6 @@ class Celular extends Entity implements Cloneable {
 		}
 		result.append(if(recibeResumenCuenta) " - recibe resumen" else " - no recibe resumen")
 		result.toString
-	}
-
-	// ******************************************************************
-	// ** Métodos que no son estrictamente necesarios
-	//    Sirven si queremos implementar la transaccionalidad a mano
-	// ******************************************************************
-	override clone() {
-		super.clone()
-	}
-
-	/**
-	 * Se copia toda la información al destino
-	 * parametros: El celular que contendrá la información copiada
-	 */
-	def copiarA(Celular destino) {
-		destino.numero = this.numero
-		destino.nombre = this.nombre
-		destino.recibeResumenCuenta = this.recibeResumenCuenta
-		destino.modeloCelular = this.modeloCelular
 	}
 
 }
