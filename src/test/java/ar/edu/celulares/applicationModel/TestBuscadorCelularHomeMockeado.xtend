@@ -5,7 +5,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.uqbar.commons.utils.ApplicationContext
-import ar.edu.celulares.home.MockRepoCelulares
+import ar.edu.celulares.repo.MockRepoCelulares
 
 class TestBuscadorCelularHomeMockeado extends AbstractTestBuscadorCelular {
 
