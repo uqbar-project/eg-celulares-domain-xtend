@@ -10,7 +10,7 @@ import org.uqbar.commons.utils.TransactionalAndObservable
 @TransactionalAndObservable
 class Celular extends Entity implements Cloneable {
 
-	final int MAX_NUMERO = 100000
+	static final int MAX_NUMERO = 100000
 
 	Integer numero
 	String nombre
@@ -18,8 +18,8 @@ class Celular extends Entity implements Cloneable {
 	Boolean recibeResumenCuenta = false
 
 	def void setNumero(Integer unNumero) {
-		if (unNumero != null && unNumero.intValue() <= this.MAX_NUMERO) {
-			throw new UserException("El número debe ser mayor a " + this.MAX_NUMERO)
+		if (unNumero != null && unNumero.intValue() <= MAX_NUMERO) {
+			throw new UserException("El número debe ser mayor a " + MAX_NUMERO)
 		}
 		this.numero = unNumero
 	}
@@ -46,8 +46,8 @@ class Celular extends Entity implements Cloneable {
 		if (numero == null) {
 			throw new UserException("Debe ingresar número")
 		}
-		if (numero.intValue() <= this.MAX_NUMERO) {
-			throw new UserException("El número debe ser mayor a " + this.MAX_NUMERO)
+		if (numero.intValue() <= MAX_NUMERO) {
+			throw new UserException("El número debe ser mayor a " + MAX_NUMERO)
 		}
 		if (!this.ingresoNombre()) {
 			throw new UserException("Debe ingresar nombre")
