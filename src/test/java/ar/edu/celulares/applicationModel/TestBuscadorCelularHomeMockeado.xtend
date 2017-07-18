@@ -1,11 +1,11 @@
 package ar.edu.celulares.applicationModel
 
 import ar.edu.celulares.domain.Celular
+import ar.edu.celulares.repo.MockRepoCelulares
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.uqbar.commons.utils.ApplicationContext
-import ar.edu.celulares.repo.MockRepoCelulares
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 class TestBuscadorCelularHomeMockeado extends AbstractTestBuscadorCelular {
 

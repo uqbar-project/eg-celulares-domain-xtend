@@ -2,9 +2,9 @@ package ar.edu.celulares.domain
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
-import org.uqbar.commons.model.UserException
-import org.uqbar.commons.utils.Dependencies
-import org.uqbar.commons.utils.TransactionalAndObservable
+import org.uqbar.commons.model.annotations.Dependencies
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
 @TransactionalAndObservable

@@ -3,7 +3,7 @@ package ar.edu.celulares.applicationModel
 import ar.edu.celulares.domain.Modelo
 import ar.edu.celulares.repo.RepoModelos
 import org.junit.Before
-import org.uqbar.commons.utils.ApplicationContext
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 class AbstractTestBuscadorCelular {
 

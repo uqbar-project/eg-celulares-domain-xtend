@@ -5,7 +5,7 @@ import java.math.BigDecimal
 import java.util.List
 import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedRepo
-import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.annotations.Observable
 
 @Observable
 class RepoModelos extends CollectionBasedRepo<Modelo> {

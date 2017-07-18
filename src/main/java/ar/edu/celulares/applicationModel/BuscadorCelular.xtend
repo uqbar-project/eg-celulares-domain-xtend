@@ -5,8 +5,8 @@ import ar.edu.celulares.repo.RepoCelulares
 import java.io.Serializable
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.ApplicationContext
-import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.applicationContext.ApplicationContext
+import org.uqbar.commons.model.annotations.Observable
 
 /**
  * Application model que representa la búsqueda de {@link Celular}.

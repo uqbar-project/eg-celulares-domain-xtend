@@ -1,10 +1,11 @@
 package ar.edu.celulares.domain
 
 import java.math.BigDecimal
-import static org.junit.Assert.*;
 import org.junit.Before
 import org.junit.Test
-import org.uqbar.commons.model.UserException
+import org.uqbar.commons.model.exceptions.UserException
+
+import static org.junit.Assert.*
 
 class TestCelular {
 	

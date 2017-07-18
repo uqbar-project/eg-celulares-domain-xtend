@@ -3,7 +3,7 @@ package ar.edu.celulares.domain
 import java.math.BigDecimal
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
-import org.uqbar.commons.utils.TransactionalAndObservable
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
 @TransactionalAndObservable

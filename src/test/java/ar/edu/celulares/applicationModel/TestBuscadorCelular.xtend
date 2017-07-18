@@ -7,7 +7,7 @@ import ar.edu.celulares.repo.RepoModelos
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.uqbar.commons.utils.ApplicationContext
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 class TestBuscadorCelular extends AbstractTestBuscadorCelular {
 
