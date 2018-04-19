@@ -2,7 +2,6 @@ package ar.edu.celulares.applicationModel
 
 import ar.edu.celulares.domain.Celular
 import ar.edu.celulares.repo.RepoCelulares
-import java.io.Serializable
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.applicationContext.ApplicationContext
@@ -26,7 +25,7 @@ import org.uqbar.commons.model.annotations.Observable
  */
 @Accessors
 @Observable
-class BuscadorCelular implements Serializable {
+class BuscadorCelular {
 
 	Celular example = new Celular
 	List<Celular> resultados
@@ -50,9 +49,19 @@ class BuscadorCelular implements Serializable {
 		this.search()
 		celularSeleccionado = null
 	}
+	
+	def crearCelular(Celular celular) {
+		repoCelulares.create(celular)
+		search
+	}
+
+	
+	def actualizarSeleccionado() {
+		repoCelulares.update(celularSeleccionado)
+		search
+	}
 
 	def RepoCelulares getRepoCelulares() {
 		ApplicationContext.instance.getSingleton(typeof(Celular))
 	}
-
 }
