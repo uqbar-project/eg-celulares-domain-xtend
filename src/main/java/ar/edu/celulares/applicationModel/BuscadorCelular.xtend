@@ -34,7 +34,7 @@ class BuscadorCelular {
 	// ********************************************************
 	// ** Acciones
 	// ********************************************************
-	def void search() { 
+	def void search() {
 		resultados = repoCelulares.search(example.numero, example.nombre)
 	}
 
@@ -58,7 +58,6 @@ class BuscadorCelular {
 	
 	def actualizarSeleccionado() {
 		repoCelulares.update(celularSeleccionado)
-		search
 	}
 
 	def RepoCelulares getRepoCelulares() {

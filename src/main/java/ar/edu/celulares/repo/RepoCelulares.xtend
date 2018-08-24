@@ -56,10 +56,10 @@ class RepoCelulares extends CollectionBasedRepo<Celular> {
 	}
 
 	def match(Object expectedValue, Object realValue) {
-		if (expectedValue == null) {
+		if (expectedValue === null) {
 			return true
 		}
-		if (realValue == null) {
+		if (realValue === null) {
 			return false
 		}
 		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())

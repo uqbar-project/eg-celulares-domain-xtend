@@ -3,11 +3,13 @@ package ar.edu.celulares.domain
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.Dependencies
-import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.annotations.Transactional
 import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
-@TransactionalAndObservable
+@Transactional
+@Observable
 class Celular extends Entity implements Cloneable {
 
 	static final int MAX_NUMERO = 100000
@@ -18,7 +20,7 @@ class Celular extends Entity implements Cloneable {
 	Boolean recibeResumenCuenta = false
 
 	def void setNumero(Integer unNumero) {
-		if (unNumero != null && unNumero.intValue() <= MAX_NUMERO) {
+		if (unNumero !== null && unNumero.intValue() <= MAX_NUMERO) {
 			throw new UserException("El número debe ser mayor a " + MAX_NUMERO)
 		}
 		this.numero = unNumero
@@ -43,7 +45,7 @@ class Celular extends Entity implements Cloneable {
 	 * Valida que el celular esté correctamente cargado (cumple todas las validaciones que plantea el negocio)
 	 */
 	def validar() {
-		if (numero == null) {
+		if (numero === null) {
 			throw new UserException("Debe ingresar número")
 		}
 		if (numero.intValue() <= MAX_NUMERO) {
@@ -52,13 +54,13 @@ class Celular extends Entity implements Cloneable {
 		if (!this.ingresoNombre()) {
 			throw new UserException("Debe ingresar nombre")
 		}
-		if (modeloCelular == null) {
+		if (modeloCelular === null) {
 			throw new UserException("Debe ingresar un modelo de celular")
 		}
 	}
 
 	def ingresoNombre() {
-		nombre != null && !nombre.trim().equals("")
+		nombre !== null && !nombre.trim().equals("")
 	}
 
 	// ********************************************************
@@ -80,10 +82,10 @@ class Celular extends Entity implements Cloneable {
 	override def String toString() {
 		var result = new StringBuffer
 		result.append(nombre ?: "Celular sin nombre")
-		if (modeloCelular != null) {
+		if (modeloCelular !== null) {
 			result.append(" - " + modeloCelular)
 		}
-		if (numero != null) {
+		if (numero !== null) {
 			result.append(" - " + numero)
 		}
 		result.append(if(recibeResumenCuenta) " - recibe resumen" else " - no recibe resumen")
